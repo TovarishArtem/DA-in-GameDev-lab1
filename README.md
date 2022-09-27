@@ -1,14 +1,13 @@
 # АНАЛИЗ ДАННЫХ И ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ [in GameDev]
 Отчет по лабораторной работе #1 выполнил(а):
-- Иванова Ивана Варкравтовна
-- РИ000024
-Отметка о выполнении заданий (заполняется студентом):
+- Чекмарев Артем Алексеевич
+- РИ210915
 
 | Задание | Выполнение | Баллы |
 | ------ | ------ | ------ |
-| Задание 1 | # | 60 |
-| Задание 2 | # | 20 |
-| Задание 3 | # | 20 |
+| Задание 1 | * | 60 |
+| Задание 2 | * | 20 |
+| Задание 3 | * | 20 |
 
 знак "*" - задание выполнено; знак "#" - задание не выполнено;
 
@@ -25,105 +24,80 @@
 
 - Данные о работе: название работы, фио, группа, выполненные задания.
 - Цель работы.
-- Задание 1.
+- Задание 1.
 - Код реализации выполнения задания. Визуализация результатов выполнения (если применимо).
-- Задание 2.
+- Задание 2.
 - Код реализации выполнения задания. Визуализация результатов выполнения (если применимо).
-- Задание 3.
+- Задание 3.
 - Код реализации выполнения задания. Визуализация результатов выполнения (если применимо).
 - Выводы.
 - ✨Magic ✨
-
 ## Цель работы
 Ознакомиться с основными операторами зыка Python на примере реализации линейной регрессии.
-
 ## Задание 1
+### Написать программы Hello world на Python и Unity
+Программа на Python выглядит так: 
+![снимок 1](https://user-images.githubusercontent.com/114291344/192603724-51ee0d78-1e24-4c21-b428-9a50e9e7f1fa.png) ![снимок 2](https://user-images.githubusercontent.com/114291344/192603858-e75f0304-d1a7-4d7f-b2bb-52c52b9804ee.png)
+Программа на Unity выглядит так:
+![снимок 3](https://user-images.githubusercontent.com/114291344/192604287-d9673d44-9622-4f5a-8f13-977f61955941.png)
+
+## Задание 2
 ### Пошагово выполнить каждый пункт раздела "ход работы" с описанием и примерами реализации задач
 Ход работы:
 - Произвести подготовку данных для работы с алгоритмом линейной регрессии. 10 видов данных были установлены случайным образом, и данные находились в линейной зависимости. Данные преобразуются в формат массива, чтобы их можно было вычислить напрямую при использовании умножения и сложения.
 
-```py
-
-In [ ]:
-#Import the required modules, numpy for calculation, and Matplotlib for drawing
-import numpy as np
-import matplotlib.pyplot as plt
-#This code is for jupyter Notebook only
-%matplotlib inline
-
-# define data, and change list to array
-x = [3,21,22,34,54,34,55,67,89,99]
-x = np.array(x)
-y = [2,22,24,65,79,82,55,130,150,199]
-y = np.array(y)
-
-#Show the effect of a scatter plot
-plt.scatter(x,y)
-
-```
+![снимок 4](https://user-images.githubusercontent.com/114291344/192604844-aef84112-9675-4888-aa4f-9f18e7487b95.png)
 
 - Определите связанные функции. Функция модели: определяет модель линейной регрессии wx+b. Функция потерь: функция потерь среднеквадратичной ошибки. Функция оптимизации: метод градиентного спуска для нахождения частных производных w и b.
 
+![снимок 5](https://user-images.githubusercontent.com/114291344/192605263-6f1366f2-6d10-492d-8a8a-7612d5f26d4e.png)
 
-## Задание 2
-### Должна ли величина loss стремиться к нулю при изменении исходных данных? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ.
+Итерация: 
+![снимок 6](https://user-images.githubusercontent.com/114291344/192606279-d4299c22-3363-4979-92a7-ef90441f6d77.png)
 
-- Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
-- Для запуска скрипт-файла откройте Ansys Electronics Desktop. Перейдите во вкладку [Automation] - [Run Script] - [Выберите файл с именем ScreatingSphereInAEDT.py из репозитория].
+![снимок 7](https://user-images.githubusercontent.com/114291344/192606336-ae761430-522b-4a94-ace5-e73f6e59d65e.png)
 
-```py
+- На 2 итерации отображаются значения параметров, значения потерь и график после итерации 
+![снимок 8](https://user-images.githubusercontent.com/114291344/192606811-b8a021ea-5fac-43ff-bbf9-81aeeeb2ed2a.png)
+ 
+-На 3 итерации отображаются значения параметров, значения потерь и график после итерации 
 
-import ScriptEnv
-ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
-oDesktop.RestoreWindow()
-oProject = oDesktop.NewProject()
-oProject.Rename("C:/Users/denisov.dv/Documents/Ansoft/SphereDIffraction.aedt", True)
-oProject.InsertDesign("HFSS", "HFSSDesign1", "HFSS Terminal Network", "")
-oDesign = oProject.SetActiveDesign("HFSSDesign1")
-oEditor = oDesign.SetActiveEditor("3D Modeler")
-oEditor.CreateSphere(
-	[
-		"NAME:SphereParameters",
-		"XCenter:="		, "0mm",
-		"YCenter:="		, "0mm",
-		"ZCenter:="		, "0mm",
-		"Radius:="		, "1.0770329614269mm"
-	], 
-)
+![снимок 9](https://user-images.githubusercontent.com/114291344/192607552-c8452119-cd89-404b-8749-aa3f1d63afcd.png)
 
-```
+- На 4 итерации отображаются значения параметров, значения потерь и график после итерации.
+
+![снимок 10](https://user-images.githubusercontent.com/114291344/192607714-01c74a75-c630-4450-9713-47628bfa84b2.png)
+
+- На 5 итерации отображаются значения параметров, значения потерь и график после итерации.
+![снимок 11](https://user-images.githubusercontent.com/114291344/192607929-58ed3446-0402-44e8-9fcf-1eb9a7615be1.png)
+
+- На 1000-й итерации отображаются значения параметров, значения потерь и график после итерации.
+
+![снимок 12](https://user-images.githubusercontent.com/114291344/192608647-b8560666-5659-4113-9ded-09aa8da74ab1.png)
 
 ## Задание 3
+### Должна ли величина loss стремиться к нулю при изменении исходных данных? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ.
+Величина loss будет стремиться к нулю при изменении исходных данных. Например, при увеличении количества итераций величина loss будет становиться меньше, т.е. стремиться к нулю.
+
+![снимок 13](https://user-images.githubusercontent.com/114291344/192610278-93d79791-8ed5-4c9a-b4f1-0dbf94bc1783.png) 
+![снимок 14](https://user-images.githubusercontent.com/114291344/192610483-f8c067c5-89d9-4335-be77-c49158e7df70.png)
+При количестве итераций 10000 величина loss равна примерно 183:
+
+![снимок 15](https://user-images.githubusercontent.com/114291344/192610880-8216a806-3663-463d-9992-7b640dd55cc0.png)
+
 ### Какова роль параметра Lr? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ. В качестве эксперимента можете изменить значение параметра.
+-Lr - это множитель шага итерации, от него зависят переменные a и b.
+-Параметр Lr влияет на угол наклона графика.
+Следовательно чем больше Lr, тем больше наклон графика.
 
-- Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
-- Для запуска скрипт-файла откройте Ansys Electronics Desktop. Перейдите во вкладку [Automation] - [Run Script] - [Выберите файл с именем ScreatingSphereInAEDT.py из репозитория].
-
-```py
-
-import ScriptEnv
-ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
-oDesktop.RestoreWindow()
-oProject = oDesktop.NewProject()
-oProject.Rename("C:/Users/denisov.dv/Documents/Ansoft/SphereDIffraction.aedt", True)
-oProject.InsertDesign("HFSS", "HFSSDesign1", "HFSS Terminal Network", "")
-oDesign = oProject.SetActiveDesign("HFSSDesign1")
-oEditor = oDesign.SetActiveEditor("3D Modeler")
-oEditor.CreateSphere(
-	[
-		"NAME:SphereParameters",
-		"XCenter:="		, "0mm",
-		"YCenter:="		, "0mm",
-		"ZCenter:="		, "0mm",
-		"Radius:="		, "1.0770329614269mm"
-	], 
-)
-
-```
+![снимок 16](https://user-images.githubusercontent.com/114291344/192612328-f3740f9a-3c28-4d00-9150-313095103ca0.png)
+![снимок 17](https://user-images.githubusercontent.com/114291344/192612349-65d4a195-966b-439a-8300-d0da2da47160.png)
+![снимок 18](https://user-images.githubusercontent.com/114291344/192612481-99ead22a-15d4-4e7e-9327-547442d050bb.png)
 
 ## Выводы
 
-Абзац умных слов о том, что было сделано и что было узнано.
+В ходе данной работы были написаны программы в среде Unity, a также Google Colab.
+Мне удалось  ознакомиться с некоторыми основными операторами языка Python и познакомиться с алгоритмом линейной регрессии. Я осуществил функции модели, потерь и оптимизации.  Также был проведен эксперимент с различными исходными данными и выявлены зависимости, и закономерности.
 
 | Plugin | README |
 | ------ | ------ |
